@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-panel: var(--sidebar-panel);
+  --color-sidebar-divider: var(--sidebar-divider);
+  --color-sidebar-text: var(--sidebar-text);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-sidebar-active-bg: var(--sidebar-active-bg);
+  --color-sidebar-active-fg: var(--sidebar-active-fg);
+
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-muted: var(--muted);
+  --color-border-soft: var(--border-soft);
+
+  --color-status-optimal: var(--status-optimal);
+  --color-status-warning: var(--status-warning);
+  --color-status-critical: var(--status-critical);
+  --color-status-routine: var(--status-routine);
+  --color-status-automated: var(--status-automated);
+  --color-status-automated-text: var(--status-automated-text);
+
+  --color-feed-bg: var(--feed-bg);
+  --color-feed-border: var(--feed-border);
+}
+
+:root,
+.dark {
+  color-scheme: dark;
+  --bg: #090e0d;
+  --fg: #f4f4f3;
+  --primary: #f2a316;
+  --primary-foreground: #141414;
+  --sidebar: #f2a316;
+  --sidebar-panel: #111716;
+  --sidebar-divider: #222c2b;
+  --sidebar-text: #8d9897;
+  --sidebar-muted: #73807f;
+  --sidebar-hover: #1a2221;
+  --sidebar-active-bg: #f2a316;
+  --sidebar-active-fg: #ffffff;
+  --surface-1: #121818;
+  --surface-2: #0c1211;
+  --surface-3: #1a2120;
+  --muted: #95a1a0;
+  --border-soft: #26302f;
+  --status-optimal: #41cf5d;
+  --status-warning: #f2a316;
+  --status-critical: #ef4444;
+  --status-routine: #64748b;
+  --status-automated: #0f7f47;
+  --status-automated-text: #4ff38f;
+  --feed-bg: #141919;
+  --feed-border: #1e2726;
+}
+
+.light {
+  color-scheme: light;
+  --bg: #f2f1ef;
+  --fg: #1f2524;
+  --primary: #f2a316;
+  --primary-foreground: #141414;
+  --sidebar: #f2a316;
+  --sidebar-panel: #f2a316;
+  --sidebar-divider: #d78f12;
+  --sidebar-text: #4a3419;
+  --sidebar-muted: #5a4224;
+  --sidebar-hover: #0000000d;
+  --sidebar-active-bg: #1a1a1a;
+  --sidebar-active-fg: #ffffff;
+  --surface-1: #ffffff;
+  --surface-2: #f8f8f8;
+  --surface-3: #f0efed;
+  --muted: #6f716f;
+  --border-soft: #e4e1dc;
+  --status-optimal: #2f7a4c;
+  --status-warning: #d98912;
+  --status-critical: #c92e2e;
+  --status-routine: #7b7b7b;
+  --status-automated: #dff4df;
+  --status-automated-text: #2f7a4c;
+  --feed-bg: #f2e6d7;
+  --feed-border: #f4c78d;
+}
+
+@layer base {
+  * {
+    border-color: var(--border-soft);
+  }
+
+  body {
+    background: radial-gradient(circle at 10% 0%, #111818 0%, var(--bg) 35%);
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans), "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+  }
+
+  .light body {
+    background: #f2f1ef;
+  }
+}
+
+.theme-switching body,
+.theme-switching header,
+.theme-switching main,
+.theme-switching section,
+.theme-switching aside,
+.theme-switching nav,
+.theme-switching div,
+.theme-switching span,
+.theme-switching p,
+.theme-switching h1,
+.theme-switching h2,
+.theme-switching h3,
+.theme-switching h4,
+.theme-switching a,
+.theme-switching button,
+.theme-switching input,
+.theme-switching svg,
+.theme-switching path {
+  transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-switching body,
+  .theme-switching header,
+  .theme-switching main,
+  .theme-switching section,
+  .theme-switching aside,
+  .theme-switching nav,
+  .theme-switching div,
+  .theme-switching span,
+  .theme-switching p,
+  .theme-switching h1,
+  .theme-switching h2,
+  .theme-switching h3,
+  .theme-switching h4,
+  .theme-switching a,
+  .theme-switching button,
+  .theme-switching input,
+  .theme-switching svg,
+  .theme-switching path {
+    transition: none !important;
+  }
+}

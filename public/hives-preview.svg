@@ -1,0 +1,43 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="600" y1="30" x2="600" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6C26B"/>
+      <stop offset="1" stop-color="#F8E0B8"/>
+    </linearGradient>
+    <linearGradient id="field" x1="600" y1="420" x2="600" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9FC77C"/>
+      <stop offset="1" stop-color="#6E9356"/>
+    </linearGradient>
+    <linearGradient id="sunGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFD066" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#FFD066" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="700" fill="url(#sky)"/>
+  <rect y="420" width="1200" height="280" fill="url(#field)"/>
+
+  <circle cx="260" cy="165" r="74" fill="#FFD064"/>
+  <ellipse cx="260" cy="220" rx="230" ry="130" fill="url(#sunGlow)"/>
+
+  <rect x="120" y="400" width="940" height="18" rx="9" fill="#8E6C3E"/>
+  <rect x="155" y="418" width="20" height="86" rx="10" fill="#7A5B35"/>
+  <rect x="1000" y="418" width="20" height="86" rx="10" fill="#7A5B35"/>
+
+  <rect x="220" y="300" width="120" height="105" rx="12" fill="#E4B640"/>
+  <rect x="352" y="300" width="120" height="105" rx="12" fill="#73AF89"/>
+  <rect x="484" y="300" width="120" height="105" rx="12" fill="#67B6C0"/>
+  <rect x="616" y="300" width="120" height="105" rx="12" fill="#7DA4D4"/>
+  <rect x="748" y="300" width="120" height="105" rx="12" fill="#DBA6B5"/>
+
+  <rect x="205" y="285" width="680" height="18" rx="9" fill="#6D5433"/>
+  <rect x="215" y="274" width="660" height="12" rx="6" fill="#8A6A42"/>
+
+  <g opacity="0.14" stroke="#4C6A3D" stroke-width="4">
+    <path d="M20 640C90 600 140 605 220 640"/>
+    <path d="M230 660C310 620 350 620 440 660"/>
+    <path d="M500 650C590 610 650 610 730 650"/>
+    <path d="M760 665C840 625 900 625 990 665"/>
+    <path d="M980 640C1060 600 1110 605 1180 640"/>
+  </g>
+</svg>
