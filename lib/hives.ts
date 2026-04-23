@@ -25,11 +25,116 @@ export type HiveDetail = {
   activityLevel: string;
   identifier: string;
   inspectionNote: string;
-  activityPoints: Array<{ label: string; value: number; highlight?: boolean }>;
+  weeklyActivityPoints: Array<{
+    label: string;
+    value: number;
+    highlight?: boolean;
+  }>;
+  monthlyActivityPoints: Array<{
+    label: string;
+    value: number;
+    highlight?: boolean;
+  }>;
   recommendations: HiveRecommendation[];
 };
 
 const HIVE_RECORDS: HiveDetail[] = [
+  {
+    id: "02",
+    name: "Hive #02",
+    apiary: "Alpha Ridge",
+    type: "Langstroth",
+    status: "monitor",
+    colonyStrength: 38000,
+    capacity: 55000,
+    temperatureC: 34.8,
+    humidityPct: 48,
+    growthPct: 15,
+    productivityScore: 92,
+    estimatedYieldKg: 45.0,
+    activityLevel: "Very High",
+    identifier: "AR-0238-L",
+    inspectionNote:
+      "Weight reaching peak capacity. Foraging behavior remains exceptionally consistent.",
+    weeklyActivityPoints: [
+      { label: "Mon", value: 72 },
+      { label: "Tue", value: 75 },
+      { label: "Wed", value: 78 },
+      { label: "Thu", value: 80 },
+      { label: "Fri", value: 85, highlight: true },
+      { label: "Sat", value: 82 },
+      { label: "Today", value: 85, highlight: true },
+    ],
+    monthlyActivityPoints: [
+      { label: "Sep 01", value: 45 },
+      { label: "Sep 05", value: 48 },
+      { label: "Sep 09", value: 52 },
+      { label: "Sep 12", value: 55 },
+      { label: "Sep 15", value: 65, highlight: true },
+      { label: "Sep 18", value: 72 },
+      { label: "Sep 21", value: 78 },
+      { label: "Today", value: 85, highlight: true },
+    ],
+    recommendations: [
+      {
+        label: "Recommendation",
+        title: "Schedule extraction window",
+        reasoning:
+          "Weight metrics indicate honey supers are at 92% capacity. Harvest within 48 hours to avoid congestion.",
+        impactScore: 98,
+        impactLabel: "Critical Yield",
+        statusTone: "monitor",
+      },
+    ],
+  },
+  {
+    id: "06",
+    name: "Hive #06",
+    apiary: "Beta Field",
+    type: "Warre",
+    status: "alert",
+    colonyStrength: 12000,
+    capacity: 55000,
+    temperatureC: 28.5,
+    humidityPct: 74,
+    growthPct: -8,
+    productivityScore: 35,
+    estimatedYieldKg: 8.4,
+    activityLevel: "Low",
+    identifier: "BF-0612-W",
+    inspectionNote:
+      "Significant temperature drop detected. Immediate inspection required for structural integrity or disease.",
+    weeklyActivityPoints: [
+      { label: "Mon", value: 18 },
+      { label: "Tue", value: 16 },
+      { label: "Wed", value: 15 },
+      { label: "Thu", value: 14 },
+      { label: "Fri", value: 12 },
+      { label: "Sat", value: 11 },
+      { label: "Today", value: 10, highlight: true },
+    ],
+    monthlyActivityPoints: [
+      { label: "Sep 01", value: 30 },
+      { label: "Sep 05", value: 28 },
+      { label: "Sep 09", value: 25 },
+      { label: "Sep 12", value: 22 },
+      { label: "Sep 15", value: 18, highlight: true },
+      { label: "Sep 18", value: 15 },
+      { label: "Sep 21", value: 12 },
+      { label: "Today", value: 10, highlight: true },
+    ],
+    recommendations: [
+      {
+        label: "Recommendation",
+        title: "Manual Thermal Audit",
+        reasoning:
+          "Internal temperature dropped 4°C below baseline. Check entrance reduction and moisture levels.",
+        impactScore: 96,
+        impactLabel: "Survival Risk",
+        statusTone: "alert",
+      },
+    ],
+  },
   {
     id: "12",
     name: "Hive #12",
@@ -45,8 +150,18 @@ const HIVE_RECORDS: HiveDetail[] = [
     estimatedYieldKg: 28.4,
     activityLevel: "High",
     identifier: "BG-7829-X",
-    inspectionNote: "Balanced brood expansion and stable sensor readings indicate strong seasonal readiness.",
-    activityPoints: [
+    inspectionNote:
+      "Balanced brood expansion and stable sensor readings indicate strong seasonal readiness.",
+    weeklyActivityPoints: [
+      { label: "Mon", value: 58 },
+      { label: "Tue", value: 60 },
+      { label: "Wed", value: 55 },
+      { label: "Thu", value: 62 },
+      { label: "Fri", value: 64 },
+      { label: "Sat", value: 63 },
+      { label: "Today", value: 66, highlight: true },
+    ],
+    monthlyActivityPoints: [
       { label: "Sep 01", value: 42 },
       { label: "Sep 05", value: 44 },
       { label: "Sep 09", value: 61 },
@@ -101,8 +216,18 @@ const HIVE_RECORDS: HiveDetail[] = [
     estimatedYieldKg: 21.6,
     activityLevel: "Moderate",
     identifier: "BT-1407-M",
-    inspectionNote: "Stable foraging trends, but brood temperature needs closer observation through the next cycle.",
-    activityPoints: [
+    inspectionNote:
+      "Stable foraging trends, but brood temperature needs closer observation through the next cycle.",
+    weeklyActivityPoints: [
+      { label: "Mon", value: 50 },
+      { label: "Tue", value: 52 },
+      { label: "Wed", value: 48 },
+      { label: "Thu", value: 45 },
+      { label: "Fri", value: 47 },
+      { label: "Sat", value: 44 },
+      { label: "Today", value: 46 },
+    ],
+    monthlyActivityPoints: [
       { label: "Sep 01", value: 35 },
       { label: "Sep 05", value: 39 },
       { label: "Sep 09", value: 41 },
@@ -157,8 +282,18 @@ const HIVE_RECORDS: HiveDetail[] = [
     estimatedYieldKg: 13.2,
     activityLevel: "Elevated",
     identifier: "WR-2418-A",
-    inspectionNote: "Temperature stress and low humidity suggest an immediate review of airflow and water access.",
-    activityPoints: [
+    inspectionNote:
+      "Temperature stress and low humidity suggest an immediate review of airflow and water access.",
+    weeklyActivityPoints: [
+      { label: "Mon", value: 48 },
+      { label: "Tue", value: 50 },
+      { label: "Wed", value: 55 },
+      { label: "Thu", value: 58 },
+      { label: "Fri", value: 62 },
+      { label: "Sat", value: 59 },
+      { label: "Today", value: 60, highlight: true },
+    ],
+    monthlyActivityPoints: [
       { label: "Sep 01", value: 28 },
       { label: "Sep 05", value: 31 },
       { label: "Sep 09", value: 37 },
@@ -213,8 +348,18 @@ const HIVE_RECORDS: HiveDetail[] = [
     estimatedYieldKg: 31.7,
     activityLevel: "High",
     identifier: "FR-5515-L",
-    inspectionNote: "Strong growth, balanced humidity, and active foraging indicate a healthy late-season trajectory.",
-    activityPoints: [
+    inspectionNote:
+      "Strong growth, balanced humidity, and active foraging indicate a healthy late-season trajectory.",
+    weeklyActivityPoints: [
+      { label: "Mon", value: 70 },
+      { label: "Tue", value: 72 },
+      { label: "Wed", value: 75 },
+      { label: "Thu", value: 73 },
+      { label: "Fri", value: 78 },
+      { label: "Sat", value: 74 },
+      { label: "Today", value: 76, highlight: true },
+    ],
+    monthlyActivityPoints: [
       { label: "Sep 01", value: 50 },
       { label: "Sep 05", value: 54 },
       { label: "Sep 09", value: 57 },
@@ -256,15 +401,25 @@ const HIVE_RECORDS: HiveDetail[] = [
   },
 ];
 
-export const HIVE_SUMMARIES = HIVE_RECORDS.map(({ id, apiary, status, colonyStrength, capacity, temperatureC, humidityPct }) => ({
-  id,
-  location: apiary,
-  status,
-  colonyStrength,
-  capacity,
-  temperatureC,
-  humidityPct,
-}));
+export const HIVE_SUMMARIES = HIVE_RECORDS.map(
+  ({
+    id,
+    apiary,
+    status,
+    colonyStrength,
+    capacity,
+    temperatureC,
+    humidityPct,
+  }) => ({
+    id,
+    location: apiary,
+    status,
+    colonyStrength,
+    capacity,
+    temperatureC,
+    humidityPct,
+  }),
+);
 
 export function getHiveById(id: string) {
   return HIVE_RECORDS.find((hive) => hive.id === id);
