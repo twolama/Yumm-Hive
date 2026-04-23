@@ -19,6 +19,8 @@ type ThemeContextValue = {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 function applyTheme(theme: Theme) {
+  if (typeof document === "undefined") return;
+
   const root = document.documentElement;
   root.classList.remove("light", "dark");
   root.classList.add(theme);
@@ -34,26 +36,41 @@ export function useTheme() {
   return context;
 }
 
-export default function Providers({ children }: { children: React.ReactNode }) {
-  const [resolvedTheme, setResolvedTheme] = useState<Theme>("dark");
+export default function Providers({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // ✅ Initialize theme correctly (no useEffect needed for this)
+  const [resolvedTheme, setResolvedTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "dark"; // SSR fallback
 
-  useEffect(() => {
     const storedTheme = window.localStorage.getItem("theme");
-    const nextTheme: Theme = storedTheme === "light" ? "light" : "dark";
-    setResolvedTheme(nextTheme);
-    applyTheme(nextTheme);
-  }, []);
+    return storedTheme === "light" ? "light" : "dark";
+  });
 
+  // ✅ Apply theme when it changes
+  useEffect(() => {
+    applyTheme(resolvedTheme);
+  }, [resolvedTheme]);
+
+  // ✅ Update theme
   const setTheme = useCallback((theme: Theme) => {
     setResolvedTheme(theme);
-    applyTheme(theme);
-    window.localStorage.setItem("theme", theme);
+
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("theme", theme);
+    }
   }, []);
 
   const value = useMemo(
     () => ({ resolvedTheme, setTheme }),
-    [resolvedTheme, setTheme],
+    [resolvedTheme, setTheme]
   );
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
