@@ -353,7 +353,7 @@ export default function RecommendationsPanel() {
             </div>
           </div>
           <p className="mt-2 text-center text-[9px] font-bold uppercase tracking-[0.2em] text-[color:var(--muted)]/30">
-            Secure BeeGuard AI &bull; Hive Health Verification
+            Secure YummBeeGuard AI &bull; Hive Health Verification
           </p>
         </div>
       </div>

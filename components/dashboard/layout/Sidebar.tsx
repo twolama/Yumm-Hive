@@ -11,7 +11,7 @@ import {
   Lightbulb,
   Settings,
   HelpCircle,
-  LogOut
+  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -19,7 +19,11 @@ const NAV_LINKS = [
   { name: "Overview", href: "/dashboard", icon: LayoutGrid },
   { name: "My Hives", href: "/dashboard/my-hives", icon: Hexagon },
   { name: "Analytics", href: "/dashboard/analytics", icon: BarChart },
-  { name: "Recommendations", href: "/dashboard/recommendations", icon: Lightbulb },
+  {
+    name: "Recommendations",
+    href: "/dashboard/recommendations",
+    icon: Lightbulb,
+  },
 ];
 
 const BOTTOM_LINKS = [
@@ -48,12 +52,22 @@ export default function Sidebar({
     <div
       className={cn(
         "h-screen flex flex-col bg-[color:var(--sidebar-panel)] text-[color:var(--sidebar-text)] border-r border-[color:var(--sidebar-divider)]",
-        collapsed ? "w-24" : "w-[280px]"
+        collapsed ? "w-24" : "w-[280px]",
       )}
     >
       {/* Logo Area */}
-      <div className={cn("px-5 bg-sidebar border-b border-[color:var(--sidebar-divider)]", collapsed ? "pt-6 pb-6" : "pt-7 pb-7")}>
-        <div className={cn("flex items-center", collapsed ? "justify-center" : "gap-3")}> 
+      <div
+        className={cn(
+          "px-5 bg-sidebar border-b border-[color:var(--sidebar-divider)]",
+          collapsed ? "pt-6 pb-6" : "pt-7 pb-7",
+        )}
+      >
+        <div
+          className={cn(
+            "flex items-center",
+            collapsed ? "justify-center" : "gap-3",
+          )}
+        >
           <Image
             src="/Yumm_Logo.png"
             alt="Yumm logo"
@@ -64,7 +78,7 @@ export default function Sidebar({
             unoptimized
             className={cn(
               "h-auto shrink-0 transition-[width] duration-200 drop-shadow-[0_8px_24px_rgba(0,0,0,0.22)]",
-              collapsed ? "w-[52px]" : "w-[64px] sm:w-[72px] md:w-[78px]"
+              collapsed ? "w-[52px]" : "w-[64px] sm:w-[72px] md:w-[78px]",
             )}
           />
 
@@ -84,9 +98,17 @@ export default function Sidebar({
       </div>
 
       {/* Main Nav */}
-      <div className={cn("flex-1 space-y-1", collapsed ? "px-3 py-5" : "px-5 py-6")}>
+      <div
+        className={cn(
+          "flex-1 space-y-1",
+          collapsed ? "px-3 py-5" : "px-5 py-6",
+        )}
+      >
         {NAV_LINKS.map((link) => {
-          const isActive = pathname === link.href || (link.href !== "/dashboard" && pathname.startsWith(`${link.href}/`));
+          const isActive =
+            pathname === link.href ||
+            (link.href !== "/dashboard" &&
+              pathname.startsWith(`${link.href}/`));
           const Icon = link.icon;
 
           return (
@@ -95,18 +117,22 @@ export default function Sidebar({
               href={link.href}
               onClick={onNavigateMobile}
               className={cn(
-                "group relative flex items-center rounded-full font-semibold text-[15px] transition-all",
-                collapsed ? "justify-center w-14 h-14 mx-auto" : "gap-4 px-5 py-3.5",
+                "group relative flex items-center rounded-2xl font-semibold text-[15px] transition-all",
+                collapsed
+                  ? "justify-center w-14 h-14 mx-auto"
+                  : "gap-4 px-5 py-3.5",
                 isActive
-                  ? "bg-[color:var(--sidebar-active-bg)] text-[color:var(--sidebar-active-fg)] shadow-md"
-                  : "text-[color:var(--sidebar-text)] hover:bg-[color:var(--sidebar-hover)]"
+                  ? "bg-[color:var(--sidebar-active-bg)] text-[color:var(--sidebar-active-fg)] shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)]"
+                  : "text-[color:var(--sidebar-text)] hover:bg-[color:var(--sidebar-hover)]",
               )}
               aria-label={collapsed ? link.name : undefined}
             >
               <Icon
                 className={cn(
-                  "w-5 h-5",
-                  isActive ? "text-[color:var(--sidebar-active-fg)]" : "text-[color:var(--sidebar-muted)]"
+                  "w-5 h-5 transition-colors",
+                  isActive
+                    ? "text-[color:var(--sidebar-active-fg)]"
+                    : "text-[color:var(--sidebar-muted)] group-hover:text-[color:var(--sidebar-text)]",
                 )}
               />
               {!collapsed && link.name}
@@ -121,8 +147,17 @@ export default function Sidebar({
       </div>
 
       {/* Bottom Nav */}
-      <div className={cn("space-y-1 border-t border-[color:var(--sidebar-divider)]", collapsed ? "px-3 pt-4 pb-6" : "px-5 pt-4 pb-8")}>
+      <div
+        className={cn(
+          "space-y-1 border-t border-[color:var(--sidebar-divider)]",
+          collapsed ? "px-3 pt-4 pb-6" : "px-5 pt-4 pb-8",
+        )}
+      >
         {BOTTOM_LINKS.map((link) => {
+          const isActive =
+            pathname === link.href ||
+            (link.href !== "/dashboard" &&
+              pathname.startsWith(`${link.href}/`));
           const Icon = link.icon;
 
           return (
@@ -131,12 +166,24 @@ export default function Sidebar({
               href={link.href}
               onClick={onNavigateMobile}
               className={cn(
-                "group relative flex items-center rounded-full font-medium text-[15px] text-[color:var(--sidebar-text)] hover:bg-[color:var(--sidebar-hover)] transition-colors",
-                collapsed ? "justify-center w-14 h-14 mx-auto" : "gap-4 px-5 py-3"
+                "group relative flex items-center rounded-2xl font-semibold text-[15px] transition-all",
+                collapsed
+                  ? "justify-center w-14 h-14 mx-auto"
+                  : "gap-4 px-5 py-3",
+                isActive
+                  ? "bg-[color:var(--sidebar-active-bg)] text-[color:var(--sidebar-active-fg)] shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)]"
+                  : "text-[color:var(--sidebar-text)] hover:bg-[color:var(--sidebar-hover)]",
               )}
               aria-label={collapsed ? link.name : undefined}
             >
-              <Icon className="w-5 h-5 text-[color:var(--sidebar-muted)]" />
+              <Icon
+                className={cn(
+                  "w-5 h-5 transition-colors",
+                  isActive
+                    ? "text-[color:var(--sidebar-active-fg)]"
+                    : "text-[color:var(--sidebar-muted)] group-hover:text-[color:var(--sidebar-text)]",
+                )}
+              />
               {!collapsed && link.name}
               {collapsed && !mobile && (
                 <span className="pointer-events-none absolute left-full top-1/2 z-40 ml-3 -translate-y-1/2 whitespace-nowrap rounded-md bg-[color:var(--surface-1)] px-2.5 py-1.5 text-xs font-semibold text-foreground shadow-lg ring-1 ring-[color:var(--border-soft)] opacity-0 transition-opacity duration-150 group-hover:opacity-100">
@@ -149,8 +196,10 @@ export default function Sidebar({
 
         <button
           className={cn(
-            "group relative w-full flex items-center rounded-full font-medium text-[15px] text-[color:var(--sidebar-text)] hover:bg-[color:var(--sidebar-hover)] transition-colors",
-            collapsed ? "justify-center w-14 h-14 mx-auto" : "gap-4 px-5 py-3 mt-2"
+            "group relative w-full flex items-center rounded-2xl font-semibold text-[15px] text-[color:var(--sidebar-text)] hover:bg-[color:var(--sidebar-hover)] transition-colors",
+            collapsed
+              ? "justify-center w-14 h-14 mx-auto"
+              : "gap-4 px-5 py-3 mt-2",
           )}
           aria-label={collapsed ? "Logout" : undefined}
         >

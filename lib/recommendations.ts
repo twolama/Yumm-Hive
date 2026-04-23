@@ -78,5 +78,5 @@ export const recommendationCopy = {
   highlightedHive: "Hive-07",
   outro:
     "is showing signs of early honey capping. Would you like to review the harvest schedule or check for other maintenance needs?",
-  promptPlaceholder: "Ask BeeGuard AI anything...",
+  promptPlaceholder: "Ask YummBeeGuard AI anything...",
 };
