@@ -19,11 +19,13 @@ export default function Navbar({ variant = "landing" }: NavbarProps) {
           href="/"
           className="flex items-center gap-3 md:gap-4 group cursor-pointer"
         >
-          <div className="relative w-10 h-10 md:w-14 md:h-14 transition-transform duration-500 group-hover:rotate-12">
+          <div className="w-10 md:w-14 transition-transform duration-500 group-hover:rotate-12">
             <Image
               src="/Yumm_Logo.png"
               alt="Yumm Logo"
-              fill
+              width={56}
+              height={56}
+              sizes="(max-width: 768px) 40px, 56px"
               className="object-contain drop-shadow-lg"
               priority
             />
